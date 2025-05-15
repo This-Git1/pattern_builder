@@ -24,6 +24,7 @@ public class PersonBuilder {
 
     public PersonBuilder setAge(int age) {
         this.age = age;
+        checkAge(age);
         return this;
     }
 
@@ -36,13 +37,12 @@ public class PersonBuilder {
      * Создаёт объект {@link Person} после валидации обязательных полей.
      *
      * @return новый экземпляр {@link Person}
-     * @throws IllegalStateException    если имя или фамилия не заданы
+     * @throws IllegalStateException если имя или фамилия не заданы
      * @throws IllegalArgumentException если возраст задан некорректно (вне диапазона 0–100)
      */
     public Person build() {
         checkRequired(name, "Имя");
         checkRequired(surname, "Фамилия");
-        checkAge(age);
 
         return new Person(this);
     }
